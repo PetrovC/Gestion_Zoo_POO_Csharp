@@ -4,7 +4,7 @@ using System;
 
 namespace Projet_Zoo.Models.Class
 {
-    public class EnclosClassique : Enclos
+    public class Classique : Enclos
     {
         private Enum_Environnements _environnementType;
         private bool _bassin;
@@ -14,7 +14,7 @@ namespace Projet_Zoo.Models.Class
         public double Grillage { get { return _grillagehauteur; } }
         public bool Bassin { get { return _bassin; } }
         public Enum_Environnements Environnement { get { return _environnementType; } }
-        public EnclosClassique() : base()
+        public Classique() : base()
         {
             _temperature = 0;
             _mesures.Longueur = 0;
@@ -24,13 +24,13 @@ namespace Projet_Zoo.Models.Class
             _mesuresBassin.Largeur = 0;
             _mesuresBassin.Hauteur = 0;
         }
-        public EnclosClassique(string nom, double temperature, double longueur, double largeur, ushort environnement, double grillage) : base(nom, temperature, longueur, largeur)
+        public Classique(string nom, double temperature, double longueur, double largeur, ushort environnement, double grillage) : base(nom, temperature, longueur, largeur)
         {
             _environnementType = (Enum_Environnements)environnement;
             _bassin = false;
             _grillagehauteur = grillage;
         }
-        public EnclosClassique(string nom, double temperature, double longueur, double largeur, ushort environnement, double grillage, double longueurbassin, double largeurbassin, double hauteurbassin) : this(nom, temperature, longueur, largeur, environnement, grillage)
+        public Classique(string nom, double temperature, double longueur, double largeur, ushort environnement, double grillage, double longueurbassin, double largeurbassin, double hauteurbassin) : this(nom, temperature, longueur, largeur, environnement, grillage)
         {
             if (longueurbassin > longueur && largeurbassin > largeur) throw new ArgumentOutOfRangeException("The pond cannot be larger than the enclosure ");
             _bassin = true;
