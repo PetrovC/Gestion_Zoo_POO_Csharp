@@ -18,14 +18,14 @@ namespace Projet_Zoo.Models.Class
         }
         public Aquarium(string nom, double temperature, double longueur, double largeur, double profondeur, double salinite) : base(nom, temperature, longueur, largeur)
         {
-            if (salinite < 0 && salinite > 1) throw new ArgumentOutOfRangeException("Bad Value la valeur doit être comprise entre 0 et 1");
+            if (salinite < 0 && salinite > 1) throw new ArgumentOutOfRangeException("Bad value, must be between 0 and 1 ");
             _mesures.Hauteur = profondeur;
             _salinite = salinite;
         }
         public override void AjouterIndividu<T>(ref T Individu)
         {
-            if (_individus.GetType() != Individu.GetType()) throw new Exception("Peut pas rajouter un animal de differente espece");
-            if (_individus.ContainsKey(Individu.Nom)) throw new ArgumentException("L'animal existe déjà.");
+            if (_individus.GetType() != Individu.GetType()) throw new Exception("Can not add an animal of different species");
+            if (_individus.ContainsKey(Individu.Nom)) throw new ArgumentException("The animal already exists");
             _individus.Add(Individu.Nom, Individu);
             _temperature += Individu.Temperature;
             _mesures.Longueur += Individu.Longueur;
@@ -35,8 +35,8 @@ namespace Projet_Zoo.Models.Class
         }
         public override void SupprimerIndividu<T>(ref T Individu)
         {
-            if (_individus.Count == 0) throw new ArgumentNullException("Dictionaire vide");
-            if (!(_individus.ContainsKey(Individu.Nom))) throw new ArgumentNullException("No value in dictionary");
+            if (_individus.Count == 0) throw new ArgumentNullException("Empty dictionary");
+            if (!(_individus.ContainsKey(Individu.Nom))) throw new ArgumentNullException("Value does not exist in the dictionary");
             _individus.Remove(Individu.Nom);
             _temperature -= Individu.Temperature;
             _mesures.Longueur -= Individu.Longueur;

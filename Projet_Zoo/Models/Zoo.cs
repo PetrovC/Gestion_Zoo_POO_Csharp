@@ -17,7 +17,7 @@ namespace Projet_Zoo.Models
         {
             get
             {
-                if (_enclos is null) throw new ArgumentNullException("No values");
+                if (_enclos.Count == 0) throw new ArgumentNullException("No values");
                 double superficieZoo = 0;
                 foreach (KeyValuePair<string, Enclos> item in _enclos)
                 {
@@ -41,13 +41,13 @@ namespace Projet_Zoo.Models
         }
         public void AjouterEnclo(Enclos enclo)
         {
-            if (_enclos.ContainsKey(enclo.Nom)) throw new ArgumentException("L'enclos existe déjà.");
+            if (_enclos.ContainsKey(enclo.Nom)) throw new ArgumentException("Value already exist");
             _enclos.Add(enclo.Nom, enclo);
         }
         public void SupprimerEnclo(Enclos enclo)
         {
-            if (_enclos.Count == 0) throw new ArgumentNullException("Dictionaire vide");
-            if (!(_enclos.ContainsKey(enclo.Nom))) throw new ArgumentNullException("No value in dictionary");
+            if (_enclos.Count == 0) throw new ArgumentNullException("Empty dictionary");
+            if (!(_enclos.ContainsKey(enclo.Nom))) throw new ArgumentNullException("Value does not exist in the dictionary");
             _enclos.Remove(enclo.Nom);
         }
     }

@@ -19,7 +19,7 @@ namespace Projet_Zoo.Models.Class
         public Enclos() { _individus = new Dictionary<string, Animaux>(); }
         public Enclos(string nom, double temperature, double longueur, double largeur)
         {
-            if (longueur < 2 && largeur < 2) throw new ArgumentOutOfRangeException("Bad Value 2 mètres min");
+            if (longueur < 2 && largeur < 2) throw new ArgumentOutOfRangeException("Wrong value: 'length and width' must be minimum of 2 ");
             _nom = nom;
             _temperature = temperature;
             _mesures.Longueur = longueur;

@@ -32,7 +32,7 @@ namespace Projet_Zoo.Models.Class
         }
         public EnclosClassique(string nom, double temperature, double longueur, double largeur, ushort environnement, double grillage, double longueurbassin, double largeurbassin, double hauteurbassin) : this(nom, temperature, longueur, largeur, environnement, grillage)
         {
-            if (longueurbassin > longueur && largeurbassin > largeur) throw new ArgumentOutOfRangeException("Le bassin ne peut pas être plus grand que l'enclos");
+            if (longueurbassin > longueur && largeurbassin > largeur) throw new ArgumentOutOfRangeException("The pond cannot be larger than the enclosure ");
             _bassin = true;
             _mesuresBassin.Hauteur = hauteurbassin;
             _mesuresBassin.Longueur = longueurbassin;
@@ -40,8 +40,8 @@ namespace Projet_Zoo.Models.Class
         }
         public override void AjouterIndividu<T>(ref T Individu)
         {
-            if (_individus.GetType() != Individu.GetType()) throw new Exception("Peut pas rajouter un animal de differente espece");
-            if (_individus.ContainsKey(Individu.Nom)) throw new ArgumentException("L'animal existe déjà.");
+            if (_individus.GetType() != Individu.GetType()) throw new Exception("Can not add an animal of different species");
+            if (_individus.ContainsKey(Individu.Nom)) throw new ArgumentException("The animal already exists");
             _individus.Add(Individu.Nom, Individu);
             _temperature += Individu.Temperature;
             _mesures.Longueur += Individu.Longueur;
@@ -58,8 +58,8 @@ namespace Projet_Zoo.Models.Class
         }
         public override void SupprimerIndividu<T>(ref T Individu)
         {
-            if (_individus.GetType() != Individu.GetType()) throw new Exception("Peut pas rajouter un animal de differente espece");
-            if (_individus.ContainsKey(Individu.Nom)) throw new ArgumentException("L'animal existe déjà.");
+            if (_individus.GetType() != Individu.GetType()) throw new Exception("Empty dictionary");
+            if (_individus.ContainsKey(Individu.Nom)) throw new ArgumentException("Value does not exist in the dictionary");
             _individus.Add(Individu.Nom, Individu);
             _temperature -= Individu.Temperature;
             _mesures.Longueur -= Individu.Longueur;
