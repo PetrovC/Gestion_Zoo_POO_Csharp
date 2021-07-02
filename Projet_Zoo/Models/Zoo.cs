@@ -26,6 +26,7 @@ namespace Projet_Zoo.Models
                 return superficieZoo;
             }
         }
+        public Zoo() { }
         public Zoo(string nom)
         {
             _name = nom;

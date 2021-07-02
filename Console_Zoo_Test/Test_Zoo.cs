@@ -1,4 +1,5 @@
 ﻿using Projet_Zoo.Models;
+using Projet_Zoo.Models.Struct;
 using System;
 
 namespace Console_Zoo_Test
@@ -9,7 +10,7 @@ namespace Console_Zoo_Test
         {
             bool choix = true;
             int choixActions;
-            Zoo monZoo;
+            Zoo monZoo = new Zoo();
             while (choix)
             {
                 Console.Clear();
@@ -17,6 +18,7 @@ namespace Console_Zoo_Test
                 {
                     do
                     {
+                        Console.Clear();
                         Console.WriteLine("Bonjour dans gestion Zoo :");
                         Console.WriteLine("Editez votre Zoo tapez '0'");
                         Console.WriteLine("Pour crée un Enclo tapez '1'");
@@ -25,6 +27,22 @@ namespace Console_Zoo_Test
                     switch (choixActions)
                     {
                         case 0:
+                            Console.WriteLine("Entrez le nom de votre Zoo :");
+                            monZoo.Name = Console.ReadLine();
+                            Console.WriteLine("Entrez l'adresse de votre Zoo :");
+                            StructAdresse adresse = new StructAdresse();
+                            Console.WriteLine("Entrez la rue de votre Zoo :");
+                            adresse.Rue = Console.ReadLine();
+                            Console.WriteLine("Entrez le numero de votre Zoo :");
+                            adresse.Numero = Console.ReadLine();
+                            Console.WriteLine("Entrez le code postal de votre Zoo :");
+                            adresse.CodePostal = Console.ReadLine();
+                            Console.WriteLine("Entrez la localite de votre Zoo :");
+                            adresse.Localite = Console.ReadLine();
+                            Console.WriteLine("Entrez le pays de votre Zoo :");
+                            adresse.Pays = Console.ReadLine();
+                            monZoo.Adresse = adresse;
+                            Console.Clear();
                             break;
                         case 1:
                             break;
