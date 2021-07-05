@@ -1,8 +1,9 @@
 ﻿using Projet_Zoo.Models.Enum;
+using Projet_Zoo.Models.Inteface;
 using Projet_Zoo.Models.Struct;
 using System;
 
-namespace Projet_Zoo.Models.Class
+namespace Projet_Zoo.Models.ClassEnclo
 {
     public class Classique : Enclos
     {
@@ -38,7 +39,7 @@ namespace Projet_Zoo.Models.Class
             _mesuresBassin.Longueur = longueurbassin;
             _mesuresBassin.Largeur = largeurbassin;
         }
-        public override void AjouterIndividu<T>(ref T Individu)
+        public override void AjouterIndividu<A>(A Individu)
         {
             if (_individus.GetType() != Individu.GetType()) throw new Exception("Can not add an animal of different species");
             if (_individus.ContainsKey(Individu.Nom)) throw new ArgumentException("The animal already exists");
@@ -46,17 +47,18 @@ namespace Projet_Zoo.Models.Class
             _temperature += Individu.Temperature;
             _mesures.Longueur += Individu.Longueur;
             _mesures.Largeur += Individu.Largeur;
-            _grillagehauteur += Individu.HauteurGrillage;
-            _environnementType = Individu.EnvironnementType;
-            _bassin = Individu.Bassin;
+            IClassique Temp = Individu as IClassique;
+            _grillagehauteur += Temp.HauteurGrillage;
+            _environnementType = Temp.EnvironnementType;
+            _bassin = Temp.Bassin;
             if (_bassin)
             {
-                _mesuresBassin.Longueur += Individu.LongueurBassin;
-                _mesuresBassin.Largeur += Individu.LargeurBassin;
-                _mesuresBassin.Hauteur += Individu.PronfondeurBassin;
+                _mesuresBassin.Longueur += Temp.LongueurBassin;
+                _mesuresBassin.Largeur += Temp.LargeurBassin;
+                _mesuresBassin.Hauteur += Temp.PronfondeurBassin;
             }
         }
-        public override void SupprimerIndividu<T>(ref T Individu)
+        public override void SupprimerIndividu<A>(A Individu)
         {
             if (_individus.GetType() != Individu.GetType()) throw new Exception("Empty dictionary");
             if (_individus.ContainsKey(Individu.Nom)) throw new ArgumentException("Value does not exist in the dictionary");
@@ -64,14 +66,15 @@ namespace Projet_Zoo.Models.Class
             _temperature -= Individu.Temperature;
             _mesures.Longueur -= Individu.Longueur;
             _mesures.Largeur -= Individu.Largeur;
-            _grillagehauteur -= Individu.HauteurGrillage;
-            _environnementType = Individu.EnvironnementType;
-            _bassin = Individu.Bassin;
+            IClassique Temp = Individu as IClassique;
+            _grillagehauteur -= Temp.HauteurGrillage;
+            _environnementType = Temp.EnvironnementType;
+            _bassin = Temp.Bassin;
             if (_bassin)
             {
-                _mesuresBassin.Longueur -= Individu.LongueurBassin;
-                _mesuresBassin.Largeur -= Individu.LargeurBassin;
-                _mesuresBassin.Hauteur -= Individu.PronfondeurBassin;
+                _mesuresBassin.Longueur -= Temp.LongueurBassin;
+                _mesuresBassin.Largeur -= Temp.LargeurBassin;
+                _mesuresBassin.Hauteur -= Temp.PronfondeurBassin;
             }
         }
     }

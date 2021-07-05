@@ -2,7 +2,7 @@
 
 namespace Projet_Zoo.Models.Inteface
 {
-    public interface IClassique
+    public interface IClassique : IEnclo
     {
         public bool Bassin { get; }
         public double LargeurBassin { get; }

@@ -1,4 +1,4 @@
-﻿using Projet_Zoo.Models.Class;
+﻿using Projet_Zoo.Models.ClassEnclo;
 using Projet_Zoo.Models.Struct;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,7 @@
 ﻿using Projet_Zoo.Models;
+using Projet_Zoo.Models.ClassAnimaux;
+using Projet_Zoo.Models.ClassEnclo;
+using Projet_Zoo.Models.Enum;
 using Projet_Zoo.Models.Struct;
 using System;
 
@@ -11,6 +14,10 @@ namespace Console_Zoo_Test
             bool choix = true;
             int choixActions;
             Zoo monZoo = new Zoo();
+            Classique monClassique = new Classique();
+            Tigres monTigre = new Tigres("salut", 125, 2, Enum_Sexe.Male, DateTime.Now, 10, DateTime.Now);
+            monZoo.AjouterEnclo(monClassique);
+            monClassique.AjouterIndividu(monTigre);
             while (choix)
             {
                 Console.Clear();

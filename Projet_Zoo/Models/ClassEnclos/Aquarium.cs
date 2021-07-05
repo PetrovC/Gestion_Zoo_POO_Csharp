@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Projet_Zoo.Models.Inteface;
+using System;
 
-namespace Projet_Zoo.Models.Class
+namespace Projet_Zoo.Models.ClassEnclo
 {
     public class Aquarium : Enclos
     {
@@ -22,7 +23,7 @@ namespace Projet_Zoo.Models.Class
             _mesures.Hauteur = profondeur;
             _salinite = salinite;
         }
-        public override void AjouterIndividu<T>(ref T Individu)
+        public override void AjouterIndividu<A>(A Individu)
         {
             if (_individus.GetType() != Individu.GetType()) throw new Exception("Can not add an animal of different species");
             if (_individus.ContainsKey(Individu.Nom)) throw new ArgumentException("The animal already exists");
@@ -30,10 +31,11 @@ namespace Projet_Zoo.Models.Class
             _temperature += Individu.Temperature;
             _mesures.Longueur += Individu.Longueur;
             _mesures.Largeur += Individu.Largeur;
-            _mesures.Hauteur += Individu.Profondeur;
-            _salinite += Individu.Salinite;
+            IAquarium Temp = Individu as IAquarium;
+            _mesures.Hauteur += Temp.Profondeur;
+            _salinite += Temp.Salinite;
         }
-        public override void SupprimerIndividu<T>(ref T Individu)
+        public override void SupprimerIndividu<A>(A Individu)
         {
             if (_individus.Count == 0) throw new ArgumentNullException("Empty dictionary");
             if (!(_individus.ContainsKey(Individu.Nom))) throw new ArgumentNullException("Value does not exist in the dictionary");
@@ -41,8 +43,9 @@ namespace Projet_Zoo.Models.Class
             _temperature -= Individu.Temperature;
             _mesures.Longueur -= Individu.Longueur;
             _mesures.Largeur -= Individu.Largeur;
-            _mesures.Hauteur -= Individu.Profondeur;
-            _salinite -= Individu.Salinite;
+            IAquarium Temp = Individu as IAquarium;
+            _mesures.Hauteur -= Temp.Profondeur;
+            _salinite -= Temp.Salinite;
         }
     }
 }

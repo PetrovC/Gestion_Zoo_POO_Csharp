@@ -4,7 +4,7 @@ using Projet_Zoo.Models.Struct;
 using System;
 using System.Collections.Generic;
 
-namespace Projet_Zoo.Models.Class
+namespace Projet_Zoo.Models.ClassEnclo
 {
     public abstract class Enclos
     {
@@ -26,7 +26,7 @@ namespace Projet_Zoo.Models.Class
             _mesures.Largeur = largeur;
             _individus = new Dictionary<string, Animaux>();
         }
-        public abstract void AjouterIndividu<T>(ref T Individu) where T : Animaux, IEnclo, IClassique, IAquarium;
-        public abstract void SupprimerIndividu<T>(ref T Individu) where T : Animaux, IEnclo, IClassique, IAquarium;
+        public abstract void AjouterIndividu<A>(A Individu) where A : Animaux, IEnclo;
+        public abstract void SupprimerIndividu<A>(A Individu) where A : Animaux, IEnclo;
     }
 }
